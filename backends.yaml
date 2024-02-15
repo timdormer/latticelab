@@ -1,0 +1,269 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: oceania
+  labels:
+    name: oceania
+
+---
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: europe
+  labels:
+    name: europe
+
+---
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: africa
+  labels:
+    name: africa
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: badger
+  namespace: europe
+  labels:
+    app: badger
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: badger
+  template:
+    metadata:
+      labels:
+        app: badger
+    spec:
+      containers:
+      - name: badger
+        image: public.ecr.aws/x2j8p8w7/http-server:latest
+        env:
+        - name: PodName
+          value: "Badgers are short-legged omnivores in the family Mustelidae native to England and other parts of the world." 
+          
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: badger
+  namespace: europe
+spec:
+  selector:
+    app: badger
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8090
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dingo
+  namespace: oceania
+  labels:
+    app: dingo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: dingo
+  template:
+    metadata:
+      labels:
+        app: dingo
+    spec:
+      containers:
+      - name: dingo
+        image: public.ecr.aws/x2j8p8w7/http-server:latest
+        env:
+        - name: PodName
+          value: "Dingo is a medium-sized canine adapted for speed, agility, and stamina, found in Australia." 
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: dingo
+  namespace: oceania
+spec:
+  selector:
+    app: dingo
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8090
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hedgehog
+  namespace: europe
+  labels:
+    app: hedgehog
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hedgehog
+  template:
+    metadata:
+      labels:
+        app: hedgehog
+    spec:
+      containers:
+      - name: hedgehog
+        image: public.ecr.aws/x2j8p8w7/http-server:latest
+        env:
+        - name: PodName
+          value: "A hedgehog is a spiny mammal found throughout parts of Europe, Asia, and Africa, and in New Zealand by introduction." 
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: hedgehog
+  namespace: europe
+spec:
+  selector:
+    app: hedgehog
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8090
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wombat
+  namespace: oceania
+  labels:
+    app: wombat
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: wombat
+  template:
+    metadata:
+      labels:
+        app: wombat
+    spec:
+      containers:
+      - name: wombat
+        image: public.ecr.aws/x2j8p8w7/http-server:latest
+        env:
+        - name: PodName
+          value: "Wombats are short-legged marsupials that are native to Australia." 
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: wombat
+  namespace: oceania
+spec:
+  selector:
+    app: wombat
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8090
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lion
+  namespace: africa
+  labels:
+    app: lion
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: lion
+  template:
+    metadata:
+      labels:
+        app: lion
+    spec:
+      containers:
+      - name: lion
+        image: public.ecr.aws/x2j8p8w7/http-server:latest
+        env:
+        - name: PodName
+          value: "The lion is a large cat of the genus Panthera native to Africa and India. It has a muscular, broad-chested body; short, rounded head; round ears; and a hairy tuft at the end of its tail." 
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: lion
+  namespace: africa
+spec:
+  selector:
+    app: lion
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8090
+      
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springbok
+  namespace: africa
+  labels:
+    app: springbok
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: springbok
+  template:
+    metadata:
+      labels:
+        app: springbok
+    spec:
+      containers:
+      - name: springbok
+        image: public.ecr.aws/x2j8p8w7/http-server:latest
+        env:
+        - name: PodName
+          value: "The springbok (Antidorcas marsupialis ) is a medium-sized antelope found mainly in southern and southwestern Africa." 
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: springbok
+  namespace: africa
+spec:
+  selector:
+    app: springbok
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8090

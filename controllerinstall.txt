@@ -1,0 +1,8 @@
+helm install gateway-api-controller \
+    oci://public.ecr.aws/aws-application-networking-k8s/aws-gateway-controller-chart \
+    --version=v1.0.2 \
+    --set=serviceAccount.create=false \
+    --namespace aws-application-networking-system \
+    --set=defaultServiceNetwork=dev \
+    --set=ServiceNetworkVpcAssociation=prod \
+    --set=ServiceNetworkVpcAssociation=staging

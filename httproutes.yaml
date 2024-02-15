@@ -1,0 +1,103 @@
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: HTTPRoute
+metadata:
+  name: weighted
+  namespace: europe
+spec:
+  hostnames:
+  - europe.demo.vpc-lattice.com 
+  parentRefs:
+  - name: prod
+    namespace: gateway
+    sectionName: wildcard-demo-vpc-lattice
+  - name: dev
+    namespace: gateway
+    sectionName: wildcard-demo-vpc-lattice
+  - name: staging
+    namespace: gateway
+    sectionName: wildcard-demo-vpc-lattice
+  rules:
+  - backendRefs:  
+    - name: badger
+      namespace: europe
+      kind: Service
+      weight: 50
+      port: 80
+    - name: hedgehog
+      namespace: europe
+      kind: Service
+      weight: 50
+      port: 80
+
+---
+
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: HTTPRoute
+metadata:
+  name: path
+  namespace: oceania
+spec:
+  hostnames:
+  - oceania.demo.vpc-lattice.com 
+  parentRefs:
+  - name: dev
+    namespace: gateway
+    sectionName: wildcard-demo-vpc-lattice
+  - name: staging
+    namespace: gateway
+    sectionName: wildcard-demo-vpc-lattice
+  rules:
+  - backendRefs:  
+    - name: dingo
+      namespace: oceania
+      kind: Service
+      port: 80
+    matches:
+    - path:
+        type: PathPrefix
+        value: /dingo
+  - backendRefs:
+    - name: wombat
+      namespace: oceania
+      kind: Service
+      port: 80
+    matches:
+    - path:
+        type: PathPrefix
+        value: /wombat
+
+---
+
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: HTTPRoute
+metadata:
+  name: header
+  namespace: africa
+spec:
+  hostnames:
+  - africa.demo.vpc-lattice.com 
+  parentRefs:
+  - name: dev
+    namespace: gateway
+    sectionName: wildcard-demo-vpc-lattice
+  rules:
+  - backendRefs:
+    - name: lion
+      namespace: africa
+      kind: Service
+      port: 80
+    matches:
+    - headers:
+      - type: Exact
+        name: ver
+        value: one
+  - backendRefs:
+    - name: springbok
+      namespace: africa
+      kind: Service
+      port: 80
+    matches:
+    - headers:
+      - type: Exact
+        name: ver
+        value: two
