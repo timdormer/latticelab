@@ -9,13 +9,13 @@ spec:
   parentRefs:
   - name: prod
     namespace: gateway
-    sectionName: wildcard-demo-vpc-lattice
+    sectionName: https
   - name: dev
     namespace: gateway
-    sectionName: wildcard-demo-vpc-lattice
+    sectionName: https
   - name: staging
     namespace: gateway
-    sectionName: wildcard-demo-vpc-lattice
+    sectionName: https
   rules:
   - backendRefs:  
     - name: badger
@@ -42,10 +42,10 @@ spec:
   parentRefs:
   - name: dev
     namespace: gateway
-    sectionName: wildcard-demo-vpc-lattice
+    sectionName: https
   - name: staging
     namespace: gateway
-    sectionName: wildcard-demo-vpc-lattice
+    sectionName: https
   rules:
   - backendRefs:  
     - name: dingo
@@ -79,7 +79,7 @@ spec:
   parentRefs:
   - name: dev
     namespace: gateway
-    sectionName: wildcard-demo-vpc-lattice
+    sectionName: https
   rules:
   - backendRefs:
     - name: lion
