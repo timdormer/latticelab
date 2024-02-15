@@ -1,3 +1,4 @@
+aws ecr-public get-login-password --region us-east-1 | helm registry login --username AWS --password-stdin public.ecr.aws
 helm install gateway-api-controller \
     oci://public.ecr.aws/aws-application-networking-k8s/aws-gateway-controller-chart \
     --version=v1.0.2 \
