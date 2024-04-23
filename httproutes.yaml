@@ -7,13 +7,7 @@ spec:
   hostnames:
   - europe.demo.vpc-lattice.com 
   parentRefs:
-  - name: prod
-    namespace: gateway
-    sectionName: https
-  - name: dev
-    namespace: gateway
-    sectionName: https
-  - name: staging
+  - name: superappsvcnetwork
     namespace: gateway
     sectionName: https
   rules:
@@ -40,10 +34,7 @@ spec:
   hostnames:
   - oceania.demo.vpc-lattice.com 
   parentRefs:
-  - name: dev
-    namespace: gateway
-    sectionName: https
-  - name: staging
+  - name: superappsvcnetwork
     namespace: gateway
     sectionName: https
   rules:
@@ -77,7 +68,7 @@ spec:
   hostnames:
   - africa.demo.vpc-lattice.com 
   parentRefs:
-  - name: dev
+  - name: superappsvcnetwork
     namespace: gateway
     sectionName: https
   rules:
