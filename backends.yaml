@@ -19,6 +19,15 @@ metadata:
 apiVersion: v1
 kind: Namespace
 metadata:
+  name: asia
+  labels:
+    name: asia
+
+---
+
+apiVersion: v1
+kind: Namespace
+metadata:
   name: africa
   labels:
     name: africa
